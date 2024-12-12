@@ -1,0 +1,439 @@
+/*
+ Universal Landing
+ ==========================================================================
+ universal-landing.scss defines styles for the application landing page
+ */
+
+/* offset the persistent header */
+.landing-content {
+  margin-top: 56px;
+  @include sans-font-regular;
+
+  .disclaimer {
+    margin-top: 1em;
+  }
+}
+
+/*
+ Hero
+ =======
+ the hero is the large graphic/information area
+ */
+
+.hero {
+  background-color: $green_light;
+  overflow: hidden;
+  @include sans-font-regular;
+  @include border-bottom-light;
+
+  .inner-wrap {
+    background: url('../img/hero.png') 96% -100% no-repeat;
+  }
+}
+
+.highlight { 
+  background-color: yellow;
+  font-family: 'Lato Black'
+}
+
+.each_result{margin-bottom: 32px;}
+
+.citation_result{
+  background-color: $gold_lightest;
+}
+
+.citation_warning{
+  color: red;
+  font-family: "Lato light", Arial, sans-serif;
+}
+
+.default-error{
+  font-weight: 100;
+  padding-right: 10px;
+  color: red;
+}
+
+.search_header {
+  position: fixed;
+  background-color: white;
+  width: 90%;
+  max-width: 900px;
+  margin-top: -200px;
+}
+
+#search_results {
+  margin: 290px 0 110px 0px;
+  padding: 0 60px 0 60px;
+  max-width: 1000px;
+}
+
+#search_results p{
+  font-size: .9375em;
+  line-height: 2em;
+}
+
+#search_results h2{
+  margin-bottom: 30px;
+}
+
+#search_results a{
+  border-bottom: 1px solid;
+}
+
+
+.related, .related_terms {
+  font-family: 'Lato Light', Arial, sans-serif;
+  display: inline-block;
+}
+
+.related{
+  margin-bottom: 10px;
+}
+
+.related_terms{
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-style: italic; 
+}
+
+.left_main{
+  display: inline-block;
+}
+
+#get_started{
+  width: 23%;
+  min-width: 207px;
+  display: inline-block;
+  margin-left: 95px;
+  height: 100%;
+  max-height: 790px;
+  background-color: $atf_main_head_background;
+  color: $atf_main_head_text_color;
+  font-size: 0.85em;
+  margin-top: -75px;
+  box-shadow: -5px 5px 10px rgba(50, 50, 50, 0.4);
+}
+
+#get_started h3{
+  padding-top: 0px;
+}
+
+#get_started p, #get_started h3{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#get_started_aboutpage{
+  display: block;
+  background-color: $atf_main_head_background;
+  color: $atf_main_head_text_color;
+  font-size: 0.85em;
+  margin-bottom: 25px;
+  padding: 10px 0 10px 25px;
+  box-shadow: -5px 5px 10px rgba(50, 50, 50, 0.4);
+}
+
+.start_box{
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+.start_box_about{
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 2%;
+}
+
+#get_started_aboutpage h3{
+  font-family: "Lato Light",Arial,sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+}
+
+
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero .inner-wrap {
+    background: url('../img/hero@2x.png') 96% -100% no-repeat;
+    background-size: 325px 206px;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .hero .inner-wrap {
+    background: none;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero .inner-wrap {
+      background: none;
+    }
+  }
+
+  .start_box {
+    margin-bottom: 0;
+    width: 32%;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h3.list-header{
+    margin-top: 0;
+  }
+
+  h3.list-header.search-atf-header{
+    margin-top: 25px;
+  }
+
+  #get_started{
+    width: 110%;
+    display: block;
+    clear: both;
+    margin-left: -5%;
+    height: auto;
+    font-size: 0.85em;
+    margin-top: 35px;
+    padding: 10px 0 0 10px;
+    box-shadow: 0px 0px 0px rgba(50, 50, 50, 0.4);
+  }
+}
+
+.hero-header {
+  font-size: 2.125em;
+  @include sans-font-regular;
+}
+
+.hero-text {
+  font-size: 1.125em;
+  margin-top: 0;
+}
+
+.read-more-link {
+  margin-bottom: 2em;
+}
+
+/*
+ Regulations List
+ ================
+*/
+
+.reg-list {
+  margin-top: 1em;
+  @include reset;
+  @include border-top-light;
+
+  li {
+    display: block;
+    margin: 0;
+    @include border-bottom-light;
+  }
+
+  a {
+    display: table;
+    height: 94px;
+    width: 100%;
+    padding: 15px;
+  }
+
+  a:link,
+  a:visited {
+    color: $black;
+  }
+
+  a:hover,
+  a:active,
+  a:focus {
+    background-color: $gray_lightest;
+  }
+
+  .title-num {
+    @include reset;
+    display: block;
+    height: 100%;
+    float: left;
+    @include sans-font-bold;
+    font-size: 1.375em;
+    margin-right: 36px;
+  }
+
+  .reg-sub-title {
+    display: block;
+    float: left;
+    max-width: 75%;
+  }
+
+  .reg-major-text {
+    display: block;
+    font-size: 1.375em;
+  }
+
+  .cf-icon-right-round {
+    display: block;
+    float: right;
+    line-height: 60px;
+    color: $atf_main_head_background;
+    font-size: 1.25em;
+  }
+
+  .mini-alert {
+    display: block;
+    margin-left: 100px;
+    margin-bottom: 0.5em;
+    padding: 0.5em 15px 0 0;
+    @include border-top-light;
+    font-size: 0.875em;
+    clear: both;
+    overflow: auto;
+
+    a {
+      display: inline-block;
+      float: right;
+      color: $blue_light;
+      margin: 0;
+      padding: 0;
+      height: auto;
+      width: auto;
+
+      &:hover {
+        background-color: inherit;
+      }
+    }
+  }
+}
+
+/*
+ Sidebar
+ ========
+*/
+
+.notices {
+  @include reset;
+  @include sans-font-regular;
+  font-size: 0.875em;
+  min-height: 250px;
+}
+
+/*
+ About/Information area
+ ======================
+*/
+
+.about {
+  h3 {
+    @include reset;
+  }
+}
+
+/*
+ Secondary Well
+ --------------
+*/
+
+.secondary {
+  .well {
+    font-size: 0.875em;
+
+    ul {
+      @include reset;
+    }
+  }
+}
+
+.contact {
+  ul {
+    padding: 0;
+  }
+}
+
+/*
+Small screens
+-------------
+*/
+
+@media only screen and (max-width: 550px) {
+
+  .ruling_list button{
+    width: 53px;
+    font-size: .55em;
+  }
+  
+  .banner-text {
+    margin-top: 50px;
+    font-size: 1.625em;
+  }
+
+  .disclaimer,
+  .about-the-tool,
+  .feedback {
+    p,
+    li {
+      font-size: 1em;
+    }
+  }
+
+  .reg-list {
+    .title-num {
+      display: block;
+      height: auto;
+      float: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .reg-sub-title {
+      display: block;
+      float: none;
+      width: 80%;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    .reg-letter {
+      display: block;
+      float: none;
+      width: 80%;
+      margin-right: 0;
+      padding-right: 0;
+    }
+
+    a {
+      height: 120px;
+      position: relative;
+    }
+
+    .cf-icon-right-round {
+      display: block;
+      position: absolute;
+      top: 25%;
+      right: 15px;
+    }
+  }
+
+  #search_results{
+    padding: 0 15px 0 15px;
+  }
+
+  .related, .related_terms{
+    display: none;
+  }
+
+  .autocomplete{
+    left: 15px;
+  }
+
+  .start_box {
+    margin-bottom: 0;
+    width: 100%;
+    display: block;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  h3.list-header {
+    margin-top: 5px;
+  }
+}

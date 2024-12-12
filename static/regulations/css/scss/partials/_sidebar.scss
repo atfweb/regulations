@@ -1,0 +1,696 @@
+/*
+Sidebar.scss
+==========================================================================
+sidebar.scss styles all of the right sidebar content
+*/
+
+$icon_size: 18px;
+
+/*
+add a margin to sidebar content
+this offsets the persistent header & ensures long content is inside the viewport
+*/
+.sidebar-inner {
+  padding-bottom: 120px;
+}
+
+/* IE8 requires both the margin and padding to offset the header*/
+.lt-ie9 {
+  .secondary-content {
+    padding-bottom: 140px;
+  }
+}
+
+/*
+Sidebar
+=======
+*/
+.secondary-content {
+  font-size: 0.875em;
+  @include sans-font-regular;
+
+  /* reset the margin and padding of all sidebar lists*/
+  ul,
+  li {
+    @include reset;
+  }
+
+/*
+Sidebar Expandables
+-------------------
+*/
+
+  // @todo generalize this so that the id isn't required
+  .expandable, #definition .group {
+    cursor: pointer;
+    background-color: $gray_lightest;
+    width: 100%;
+
+    &.has-content {
+      background-color: $blue_lightest;
+    }
+
+    #calc_title h4 {
+      color: $atf_main_head_text_color;
+    }
+
+    .calc_input_label, h4 {
+      display: inline-block;
+    }
+
+    a {
+      float: right;
+      font-size: $icon_size;
+      line-height: 40px;
+      margin-right: 25px;
+    }
+  }
+
+  header {
+    &.expandable a:before {
+      @extend .cf-icon;
+      content: '\e003';
+      color: $blue_light;
+    }
+
+    &.open a:before {
+      @extend .cf-icon;
+      content: '\e007';
+      color: $blue_light;
+    }
+  }
+
+  .open-definition header a:before {
+    @extend .cf-icon;
+    content: '\e107';
+    color: $blue_light;
+  }
+
+  /*
+  Helpers
+  -------------------
+  */
+  .sidebar-subsection {
+    border-bottom: 1px solid $gray_light;
+    padding-bottom: 28px;
+    padding-top: 28px;
+  }
+
+  .sidebar-subsection:first-child {
+    padding-top: 0;
+  }
+
+  .sidebar-subsection:last-child {
+    border-bottom: none;
+    padding-bottom: 10px;
+  }
+}
+
+
+/*
+Sidebar Headers
+===============
+*/
+// @todo - this is used by definitions but _not_ by other sidebar headers.
+// Combine
+.open-definition {
+
+  &.spinner {
+    background: $gray_lightest url('../img/blue_spinner.gif') no-repeat center right;
+    background-position-x: 92%;
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background: $gray_lightest url('../img/blue_spinner@2x.gif') no-repeat center right;
+      background-position-x: 92%;
+      background-size: 19px 19px;
+    }
+  }
+}
+
+/*
+Regs Meta
+===============
+Regs Meta contains the sub-content meta data found in the sidebar
+*/
+
+.expand-drawer,
+.expandable {
+  @include border-bottom-light;
+}
+
+.regs-meta {
+
+  #calc_title h4{
+    color: $atf_main_head_text_color;
+  }
+
+  // Headers within the sidebar should have class "calc_input_label"
+  .calc_input_label {
+    color: $gray_darkest;
+  }
+
+  .calc_input_label, h4 {
+    margin: 0;
+    padding: 0 2px 0 10px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    @include sans-font-regular;
+    font-size: 1em * $sans_font_scale_factor;
+    &.important {
+      color: $red;
+    }
+
+  }
+
+  h5 {
+    font-size: 16px * $sans_font_scale_factor;
+    margin: 0;
+  }
+
+  /* We either use a subtitle + "What's this?" or an inline explanation
+     paragraph to describe what this panel is used for */
+  .subtitle {
+    display: inline-block;
+    margin: 0;
+    @include sans-font-regular;
+    font-size: 1em;
+    text-transform: none;
+    padding-right: 10px;
+  }
+
+  .explanation {
+    color: $gray_light;
+    margin: 0;
+  }
+
+  .divided-list {
+    margin-top: 12px;
+    border-top: 1px solid $gray_light;
+
+    li {
+      display: block;
+      @include border-bottom-light;
+      padding: 0.5em;
+    }
+  }
+
+  .chunk {
+    padding: 1em;
+
+    /* add a top border to IE8 since it does not recognize .last-child to remove the bottom border*/
+    .lt-ie9 & {
+      li:first-child a:link {
+        @include border-top-light;
+      }
+    }
+  }
+
+  #sxs-list .sxs-link {
+    @include sans-font-bold;
+    color: $black;
+    text-decoration: none;
+
+    .cf-icon-right {
+      float: right;
+      font-size: $icon_size;
+      line-height: 2;
+      color: $gray_light;
+    }
+
+    &:hover, &:active {
+      text-decoration: none;
+      color: $blue_light;
+
+      .cf-icon-right {
+        color: $blue_light;
+      }
+    }
+  }
+}
+
+/*
+Definitions
+===========
+When open definitions appear in the right sidebar
+*/
+
+.sidebar-inner .open-definition,
+.spinner {
+  @include border-bottom-light;
+}
+
+.open-definition ol,
+.active-term {
+  @include sans-font-bold;
+}
+
+.open-definition {
+
+
+  p {
+    font-family: $body_font;
+    font-weight: normal;
+  }
+
+  & > p {
+    clear: left;
+  }
+
+  header {
+    border-bottom: 1px solid $gray_light;
+  }
+
+  .definition-text,
+  .definition-warning {
+    padding: 1em;
+
+    p {
+      margin-top: 0;
+      line-height: 1.7em;
+    }
+
+    &.inactive,
+    &.inactive a.citation.definition {
+      color: $gray;
+    }
+  }
+
+  .definition-warning {
+    color: $red;
+    border-bottom: 1px solid $gray_light;
+    margin: 0 1em;
+    padding: 1em 0 0 0;
+
+    p {
+      @include sans-font-regular;
+      font-size: .9em;
+    }
+
+    .msg {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .msg {
+    width: 85%;
+    float: left;
+    border-bottom: 1px solid $gray_dark;
+    padding-bottom: 1em;
+  }
+
+  .update-definition {
+    display: inline;
+  }
+}
+
+#definition .error {
+  padding: 1em;
+}
+
+.js .expand-drawer.start-collapsed {
+  display: none;
+}
+
+/*
+continue links */
+.update-definition {
+  @include sans-font-bold;
+  display: inline-block;
+  margin: 0 15px 0 0;
+}
+
+/*
+Help Text
+===========
+Styles for the UI help slide down
+*/
+
+.help-title {
+  margin: 0;
+  padding-right: 10px;
+  display: inline-block;
+  padding-bottom: 0;
+}
+
+.help-list {
+  li {
+    margin-top: 15px;
+    color: $gray_darkest;
+  }
+
+  .cf-icon-right {
+    margin-top: -4px;
+  }
+
+  .modified {
+    border-right: 8px solid $green_light;
+  }
+
+  .deleted {
+    border-right: 8px solid $red_light;
+    text-decoration: line-through;
+    color: $gray;
+  }
+}
+
+.help-list {
+  margin-bottom: 15px;
+}
+
+.help-list li img {
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+
+.help-icon {
+  display: inline-block;
+  width: 40px;
+  padding: 10px;
+  margin-right: 15px;
+  border-radius: 4px;
+  background-color: $gray_lightest;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.help-sample {
+  width: 60px;
+  display: block;
+  float: left;
+  font-family: $body_font;
+}
+
+.help-text {
+  float: left;
+}
+
+.sample-menu {
+  display: block;
+  background: $gray_lightest;
+  padding: 15px;
+  border-bottom: 1px solid $gray_light;
+}
+
+.sample-menu:first-child {
+  border-top: 1px solid $gray_light;
+}
+
+#print_part, #print_section {
+  .group {
+    background-color: $gray_lightest;
+    @include border-bottom-light;
+  }
+
+  .cf-icon-print {
+    float: right;
+    color: $action_color;
+    // The print icon is a bit smaller than chevrons; enlarge it
+    font-size: $icon_size + 3;
+    line-height: 40px;
+    margin-right: 15px;
+  }
+}
+
+#explosives_calculator{
+  .group {
+    @include border-bottom-light;
+  }
+  background-color: $gray_lighter;
+  padding-top: 10px;
+}
+
+#explosives_calculator fieldset{
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+#calc_title{
+  background-color: $atf_main_head_background;
+}
+
+#calc_title .calc_input_label{
+  color: $atf_main_head_text_color;
+}
+
+#calc_distance input[type="text"], #calc_distance select{
+  margin: 0 10px 15px 10px;
+  padding: 0 10px;
+}
+
+#weight{
+  border: 1px solid $gray_light;
+  margin-bottom: 16px;
+}
+
+.noneanymore{
+  display: block;
+  margin-bottom: 15px;
+  background-color: $gray_lightest;
+}
+
+#storage_location, #storage_location2, #storage_location_fireworks, #storage_location_fireworks2, 
+#barricade_type, #blasting_agent {
+  display: inline-block;
+  width: 100%;
+}
+
+#calc_distance select {
+  width: 85%;
+}
+
+#calc_distance button {
+  margin: 15px 0 15px 10px;
+}
+
+#calc_distance label, #calc_distance .calc_input_label, h4{
+  font-weight: bold;
+}
+
+#pounds_label, #kilograms_label, #feet_label, #meters_label, #barricaded_radio_label, #unbarricaded_radio_label{
+  display: inline-block;
+  margin-right: 0;
+}
+
+#pounds, #kilograms, #feet, #meters, #barricaded_radio, #unbarricaded_radio{
+  display: inline-block;
+  width: 10%;
+  margin-right: 0;
+}
+
+input[type="radio"] {
+  margin-top: -1px;
+  vertical-align: middle;
+}
+
+.null_value {
+  color: red;
+  margin-left: 10px;
+  margin-top: -15px;
+}
+
+#calc_response {
+  height: auto;
+  text-align: center;
+  background-color: $gray_lightest;
+}
+
+.calc_response {
+  margin: auto;
+  height: auto;
+  padding: 10px 10px 10px 10px;
+  background-color: $atf_sub_head_background;
+  color: $gray_lightest;
+}
+
+.calc_disclaimer {
+  margin: -5px 10px 10px 10px;
+  color: $gray_darkest;
+  font-size: 0.8em;
+}
+
+.large_text {
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: bold;
+  color: $atf_sub_head_background;
+  margin: -10px 0 0 0;
+}
+
+.large_text2 {
+  text-align: center;
+  font-size: 3.5em;
+  font-weight: bold;
+  color: $atf_sub_head_background;
+  margin: -10px 0 10px 0;
+}
+
+a.calc_disclaimer_title{
+  padding-left: 10px;
+  text-decoration: none;
+  font-size: 0.8em;
+  font-style: italic;
+  margin: 10px 0 10px 0;
+}
+
+#calc_distance input[type="checkbox"] {
+  margin-top: -5px;
+}
+
+.check_box{
+  display: inline-block;
+  width: 5%;
+  padding-left: 10px;
+}
+
+.storage_checkbox label{
+  font-size: 0.85em;
+  vertical-align: top;
+  display: inline-block;
+  width: 90%;
+  margin-left: 10px;
+}
+
+.footnote_disclaimer{
+  padding: 0 10px 25px 10px;
+  font-size: 0.75em;
+}
+
+.barricade_disclaimer{
+  padding: 0 10px 0px 10px;
+  font-size: 0.75em;
+}
+
+.no_messages{
+  font-size: 0.8em;
+  color: red;
+  margin-bottom: 0px;
+  padding-left: 10px;
+}
+
+.calc_text{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 1px solid $atf_sub_head_background;
+}
+
+.location_title{
+  color: $atf_sub_head_background;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+#unbarricaded_radio {
+  clear: right;
+}
+/*
+Small screens
+---------------
+*/
+
+@media only screen and (max-width: 480px) {
+  .sidebar-inner {
+    padding-bottom: 30px;
+  }
+
+  .storage_checkbox label{
+    font-size: 0.8em;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .secondary-content {
+    position: static;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    border-left: none;
+    padding-left: 40px;
+
+    .regs-meta {
+      width: 100%;
+      float: left;
+    }
+
+    /* reset expandable styles */
+    .expandable {
+      .calc_input_label, h4 {
+        font-size: .875em;
+      }
+
+      a {
+        margin-right: 25px;
+      }
+    }
+  }
+
+  .regs-meta {
+    border-top: 1px solid $gray_light;
+  }
+
+  /*
+  Definitions
+  ------------
+  definitions are positioned in a fixed window at the bottom of the viewport
+  */
+  .open-definition {
+    position: fixed;
+    top: 60%;
+    bottom: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 200px;
+    padding: 0 20px 80px 50px;
+    background: $gray_lightest;
+    @include border-top-light($width: 2px);
+    z-index: 200;
+    overflow-y: scroll;
+
+    .definition-text {
+      border-bottom: none;
+    }
+
+    .definition-warning {
+      border-bottom: 0;
+    }
+  }
+
+  .lt-ie9 {
+    .definition-text {
+      padding-bottom: 160px;
+    }
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  // Prevent expandables from going to two lines for as long as possible
+  .secondary-content {
+    .expandable {
+      .calc_input_label, h4 {
+        font-size: 0.75em;
+      }
+
+      a {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  #print_part .cf-icon-print {
+    margin-right: 0;
+  }
+
+  #print_section .cf-icon-print {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .calc_response {
+    height: auto;
+    max-width: 450px;
+    padding: 0 10px 0 10px;
+  }
+}
